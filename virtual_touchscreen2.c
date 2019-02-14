@@ -52,7 +52,7 @@ static int __init virt_ts_init(void)
 	input_set_abs_params(virt_ts_dev, ABS_X, ABS_X_MIN, ABS_X_MAX, 0, 0);
 	input_set_abs_params(virt_ts_dev, ABS_Y, ABS_Y_MIN, ABS_Y_MAX, 0, 0);
 
-	virt_ts_dev->name = "Virtual touchscreen";
+	virt_ts_dev->name = "Virtual touchscreen2";
 	virt_ts_dev->phys = "virtual_ts/input0";
 
     input_mt_init_slots(virt_ts_dev, MAX_CONTACTS, INPUT_MT_DIRECT);
@@ -230,5 +230,5 @@ module_init(virt_ts_init);
 module_exit(virt_ts_exit);
 
 MODULE_AUTHOR("Vitaly Shukela, vi0oss@gmail.com");
-MODULE_DESCRIPTION("Virtual touchscreen driver");
+MODULE_DESCRIPTION("Virtual touchscreen2 driver");
 MODULE_LICENSE("GPL");
