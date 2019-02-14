@@ -2,7 +2,7 @@
 # Makefile for the virtual touchscreen driver.
 #
 
-KDIR ?= /lib/modules/`uname -r`/build
+KDIR ?= $(KERNEL_SRC)
 
 obj-m := virtual_touchscreen.o
 
