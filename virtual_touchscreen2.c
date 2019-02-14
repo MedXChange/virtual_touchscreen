@@ -8,7 +8,7 @@
 #include <asm/delay.h>
 #include <asm/uaccess.h>
 
-#define MODNAME "virtual_touchscreen"
+#define MODNAME "virtual_touchscreen2"
 
 #define ABS_X_MIN	0
 #define ABS_X_MAX	1024
@@ -17,7 +17,7 @@
 
 #define MAX_CONTACTS 10    // 10 fingers is it
 
-#define DEVICE_NAME "virtual_touchscreen"
+#define DEVICE_NAME "virtual_touchscreen2"
 static int device_open(struct inode *, struct file *);
 static int device_release(struct inode *, struct file *);
 static ssize_t device_read(struct file *, char *, size_t, loff_t *);
@@ -72,7 +72,7 @@ static int __init virt_ts_init(void)
 	printk ("Registering the character device failed with %d\n", Major);
 	    goto fail1;
     }
-    printk ("virtual_touchscreen: Major=%d\n", Major);
+    printk ("virtual_touchscreen2: Major=%d\n", Major);
 
     cl = class_create(THIS_MODULE, DEVICE_NAME);
     if (!IS_ERR(cl)) {
@@ -99,7 +99,7 @@ static int device_release(struct inode *inode, struct file *file) {
 	
 static ssize_t device_read(struct file *filp, char *buffer, size_t length, loff_t *offset) {
     const char* message = 
-        "Usage: write the following commands to /dev/virtual_touchscreen:\n"
+        "Usage: write the following commands to /dev/virtual_touchscreen2:\n"
         "    x num  - move to (x, ...)\n"
         "    y num  - move to (..., y)\n"
         "    d 0    - touch down\n"
@@ -177,7 +177,7 @@ static void execute_command(char command, int arg1) {
             if ((command>=0x30) && (command<=0x3b)) {
                 input_event(virt_ts_dev, EV_ABS, command, arg1);
             } else {
-                printk("<4>virtual_touchscreen: Unknown command %c with arg %d\n", command, arg1);
+                printk("<4>virtual_touchscreen2: Unknown command %c with arg %d\n", command, arg1);
             }
     }
 }
@@ -200,14 +200,14 @@ static ssize_t device_write(struct file *filp, const char *buff, size_t len, lof
         if (buf[i]=='\n') {
             buf[i] = '\0';
             if(sscanf(buf+p, "%c%d", &command, &arg1) != 2) {
-                printk("<4>virtual_touchscreen: sscanf failed to interpret this input\n");
+                printk("<4>virtual_touchscreen2: sscanf failed to interpret this input\n");
             }
             p=i+1;
             execute_command(command, arg1);
         }
     }
     if (p == 0 && len != 0) {
-        printk("<4>virtual_touchscreen: Command incomplete or too long. Trailing \\n is required.\n");
+        printk("<4>virtual_touchscreen2: Command incomplete or too long. Trailing \\n is required.\n");
         // prevent endless loop
         return len;
     }

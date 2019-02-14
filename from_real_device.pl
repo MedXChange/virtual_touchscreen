@@ -3,7 +3,7 @@
 use strict;
 
 # Usage: something like 
-# ssh android "cat /dev/input/event1" | ./from_real_device.pl > /dev/virtual_touchscreen
+# ssh android "cat /dev/input/event1" | ./from_real_device.pl > /dev/virtual_touchscreen2
 
 
 

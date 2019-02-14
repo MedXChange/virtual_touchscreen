@@ -4,7 +4,7 @@
 
 KDIR ?= $(KERNEL_SRC)
 
-obj-m := virtual_touchscreen.o
+obj-m := virtual_touchscreen2.o
 
 default:
 	$(MAKE) -C $(KDIR) M=$$PWD modules
